@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Webcast Configuration</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="webcastconfig.css">
+	<link rel="stylesheet" type="text/css" href="toastify.css">
+	<link href="../base1/cockpit.css" type="text/css" rel="stylesheet">
+	<script src="../base1/cockpit.js"></script>
+</head>
+<body>
+	<div class="pf-c-page">
+		<main class="pf-c-page__main" tabindex="-1">
+				<section class="pf-c-page__main-section pf-m-dark">
+					<span>AutoConfig URL: </span><input type="text" class="form-control text-box" id="url">
+					<br>
+					<span>Video Delay(s): </span><input type="number" step="0.1" class="form-control" id="videoDelay">
+					<br>
+					<span>Audio Delay(s): </span><input type="number" step="0.1" class="form-control" id="audioDelay">
+					<br>
+					<span>Volume Gain(dB): </span><input type="number" class="form-control" id="volume">
+					<br>
+					<span>Stream Preset: </span><select name="preset" id="preset" class="form-control">
+						<option value="ultrafast">UltraFast</option>
+						<option value="superfast">SuperFast</option>
+						<option value="veryfast">VeryFast</option>
+						<option value="faster">Faster</option>
+					</select>
+					<br><br>
+					<button class="btn btn-info" type="button" id="submit">Submit</button>
+					<br><br>
+					<button class="btn btn-info" type="button" id="status">Status</button>
+					<button class="btn btn-info" type="button" id="stop">Stop</button>
+					<button class="btn btn-info" type="button" id="start">Start</button>
+					<button class="btn btn-info" type="button" id="restart">Restart</button>
+					<pre><div id="output"></div></pre>
+				</section>
+		</main>
+	</div>
+
+	<script type="text/javascript" src="toastify.js"></script>
+	<script src="webcastconfig.js"></script>
+</body>
+</html>

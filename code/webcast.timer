@@ -1,0 +1,10 @@
+[Unit]
+Description=Check for scheduled webcast
+After=sound.target
+
+[Timer]
+OnStartupSec=1s
+OnUnitActiveSec=1m
+
+[Install]
+WantedBy=timers.target

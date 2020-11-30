@@ -1,0 +1,48 @@
+* {
+    font-family: sans-serif;
+}
+
+.btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    user-select: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.form-control {
+    border-radius: 5px;
+    width: 25%;
+}
+
+.text-box {
+    width: 75%;
+}
+
+span {
+    display: inline-block;
+    width: 10%;
+}
+
+@media only screen and (max-width: 900px) {
+    span {
+        width: 20%;
+    }
+}
+
+br {
+    margin: 10px;
+}

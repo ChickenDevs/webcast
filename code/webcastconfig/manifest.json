@@ -1,0 +1,10 @@
+{
+	"version": 0,
+
+	"tools": {
+		"webcastconfig": {
+			"label": "Webcast Config",
+			"path": "index.html"
+		}
+	}
+}

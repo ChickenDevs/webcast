@@ -1,0 +1,11 @@
+[Unit]
+Description=Stream Manager
+After=sound.target
+
+[Service]
+ExecStart=/etc/webcast/webcast.py
+WorkingDirectory=/etc/webcast
+KillMode=process
+
+[Install]
+WantedBy=default.target

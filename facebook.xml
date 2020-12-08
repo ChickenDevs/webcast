@@ -14,7 +14,7 @@
 </encode>
 <output>
 <rtmp>
-<url>rtmps://live-api-s.facebook.com:443/rtmp/</url>
+<url>rtmps://live-api-s.facebook.com:443/rtmp</url>
 <stream>10224465175361641?s_bl=1&s_ps=1&s_psm=1&s_sw=0&s_vt=api-s&a=Aby-lyukoFDht6rO</stream>
 <username>Username</username>
 <password>Password</password>

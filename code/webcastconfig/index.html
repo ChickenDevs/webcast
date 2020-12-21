@@ -12,19 +12,38 @@
 	<div class="pf-c-page">
 		<main class="pf-c-page__main" tabindex="-1">
 				<section class="pf-c-page__main-section pf-m-dark">
-					<span>AutoConfig URL: </span><input type="text" class="form-control text-box" id="url">
+					<span class="tag">Use AutoConfig?</span>
+					<label class="switch">
+						<input type="checkbox" id="auto">
+						<span class="slider round"></span>
+					</label>
 					<br>
-					<span>Video Delay(s): </span><input type="number" step="0.1" class="form-control" id="videoDelay">
+					<span class="tag" id="urlTag">AutoConfig URL: </span><input type="text" class="form-control text-box" id="url">
 					<br>
-					<span>Audio Delay(s): </span><input type="number" step="0.1" class="form-control" id="audioDelay">
+					<span class="tag" id="rtmpurlTag">RTMP Url: </span><input type="text" class="form-control text-box" id="rtmpurl">
 					<br>
-					<span>Volume Gain(dB): </span><input type="number" class="form-control" id="volume">
+					<span class="tag" id="rtmpkeyTag">Stream Key: </span><input type="text" class="form-control text-box" id="rtmpkey">
 					<br>
-					<span>Stream Preset: </span><select name="preset" id="preset" class="form-control">
-						<option value="ultrafast">UltraFast</option>
-						<option value="superfast">SuperFast</option>
-						<option value="veryfast">VeryFast</option>
-						<option value="faster">Faster</option>
+					<span class="tag" id="vbitrateTag">Video Bitrate: </span><input type="text" class="form-control text-box" id="vbitrate">
+					<br>
+					<span class="tag" id="abitrateTag">Audio Bitrate: </span><input type="text" class="form-control text-box" id="abitrate">
+					<br>
+					<span class="tag">Resolution: </span><select name="resolution" id="resolution" class="form-control">
+						<option value="640x480">640x480</option>
+						<option value="800x600">800x600</option>
+						<option value="1280x720">1280x720</option>
+						<option value="1920x1080">1920x1080</option>
+					</select>
+					<br>
+					<span class="tag">Video Delay(s): </span><input type="number" step="0.1" min="0" class="form-control" id="videoDelay">
+					<br>
+					<span class="tag">Audio Delay(s): </span><input type="number" step="0.1" min="0" class="form-control" id="audioDelay">
+					<br>
+					<span class="tag">Volume Gain(dB): </span><input type="number" class="form-control" id="volume">
+					<br>
+					<span class="tag">Stream Preset: </span><select name="preset" id="preset" class="form-control">
+						<option value="ultrafast">ultrafast</option>
+						<option value="superfast">superfast</option>
 					</select>
 					<br><br>
 					<button class="btn btn-info" type="button" id="submit">Submit</button>

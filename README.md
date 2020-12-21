@@ -1,3 +1,5 @@
+This is a custom streaming solution designed to work with the webcast system of The Church of Jesus Christ of Latter-Day Saints. It uses Raspberry Pi 4, Ubuntu and ffmpeg to essentially replace the Teradek system. We initally started with Jeremy Willden's work on [OBS Automater](https://github.com/jeremywillden/obs-automator) but have sinced removed the requirement for OBS in order to make this as simple and automated as possible. (If anyone is interested in running OBS on a Pi we were successful at that and would be happy to share our experiences.)
+
 # Webcast Quickstart
 1. Download the [prebuilt image for a Raspberry Pi 4](https://bit.ly/webcast-pi).
 2. Write the image to an SD card using the [Raspberry Pi Imager](https://www.raspberrypi.org/software/).

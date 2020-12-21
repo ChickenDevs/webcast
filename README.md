@@ -16,10 +16,12 @@
 * [USB Webcam (1080p, narrow FOV & Tripod mount recommended)](https://www.amazon.com/dp/B08931JJLV)
 * [USB Extension Cable (as long as needed)](https://www.amazon.com/dp/B0777FDCX7)
 * [Tall Tripod with standard camera mount](https://www.amazon.com/dp/B08D6KM95D)
+
 These last two items are optional. We use the remote control outlet on the network switch to turn off/on the webcast without having to reboot the Pi. You could use the power switch on the Pi directly or use the web interface to stop and start the stream from a smartphone, tablet or laptop.)
 * [Remote Control Outlet](https://www.amazon.com/dp/B07D2BY7VY)
 * [Ethernet switch (for wired networking)](https://www.amazon.com/dp/B000FNFSPY)
 
 # FAQ
 Q: Can I use wireless networking?
-A: Yes. In most of our buildings we are using wired networking so that we can shutoff the wireless if bandwidth becomes an issue. We do have one branch which is using rented space without wired networking so we are successfully using wireless networking there. To setup wirless networking you will need to connect the Pi to a wired network with a DHCP server to setup the wireless networking. Connect to the management interface through the wired interface and on the "Terminal" section run "sudo nmtui" and then select "Activate a Connection" to setup the SSID and password.
+> A: Yes. In most of our buildings we are using wired networking so that we can shutoff the wireless if bandwidth becomes an issue. We do have one branch which is using rented space without wired networking so we are successfully using wireless networking there. To setup wirless networking you will need to connect the Pi to a wired network with a DHCP server to setup the wireless networking. Connect to the management interface through the wired interface and on the "Terminal" section run "sudo nmtui" and then select "Activate a Connection" to setup the SSID and password.
+

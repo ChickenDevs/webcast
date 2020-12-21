@@ -32,3 +32,6 @@ Q: Can I use this on something besides a Raspberry Pi?
 
 Q: Can I use this to stream to services other than the webcast system?
 > A: Yes. On the "Webcast Config" section of the management interface you can choose not to use AutoConfig at which point you will be able to manually set the rtmp URL, streamkey, video bitrate and audio bitrate to match any service that accepts an rtmp stream. This has been tested with YouTube, Facebook and Twitch.
+
+Q: Can I use this on low bandwidth connections?
+> A: Yes. We have one building with a 500kbps upload which is using this solution successfully. The configuration page allows the selection of camera resolutions of 640x480, 800x600, 1280x720 or 1920x1080. Using the camera from the parts list above we have tested many of the supported webcast encoder settings from 640x480@250kbps to 1920x1080@2000kpbs.

@@ -15,12 +15,13 @@ This is a custom streaming solution designed to work with the webcast system of 
 * [Raspberry Pi 4 Power Supply](https://www.amazon.com/dp/B07TYQRXTK)
 * [MicroSD card > 8Gb (Speed Class 10 recommended)](https://www.amazon.com/dp/B06XWN9Q99)
 * [USB Sound Adapter](https://www.amazon.com/dp/B00IRVQ0F8)
+* [3.5mm Audio Cable](https://www.amazon.com/dp/B088KLGVHJ)
 * [USB Webcam (1080p, narrow FOV & Tripod mount recommended)](https://www.amazon.com/dp/B08931JJLV)
 * [USB Extension Cable (as long as needed)](https://www.amazon.com/dp/B0777FDCX7)
 * [Tall Tripod with standard camera mount](https://www.amazon.com/dp/B08D6KM95D)
 
-These last two items are optional. We use the remote control outlet on the network switch to turn off/on the webcast without having to reboot the Pi. You could use the power switch on the Pi directly or use the web interface to stop and start the stream from a smartphone, tablet or laptop.
-* [Remote Control Outlet](https://www.amazon.com/dp/B07D2BY7VY)
+These last two items are optional. We use the remote control outlet on the network switch to turn off/on the stream without having to reboot the Pi. You could use the power switch on the Pi directly or use the web interface to stop and start the stream from a smartphone, tablet or laptop. We chose the hanging remote control outlet with an indicator light so that it sat just above the floor where the bishopric could see the light and control it from their seats.
+* [Remote Control Outlet](https://www.amazon.com/dp/B07WX2NBWR)
 * [Ethernet switch (for wired networking)](https://www.amazon.com/dp/B000FNFSPY)
 
 # FAQ

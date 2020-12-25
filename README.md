@@ -22,7 +22,7 @@ This is a custom streaming solution designed to work with the webcast system of 
 
 These last two items are optional. We use the remote control outlet on the network switch to turn off/on the stream without having to reboot the Pi. You could use the power switch on the Pi directly or use the web interface to stop and start the stream from a smartphone, tablet or laptop. We chose the hanging remote control outlet with an indicator light so that it sat just above the floor where the bishopric could see the light and control it from their seats.
 * [Remote Control Outlet](https://www.amazon.com/dp/B07WX2NBWR)
-* [Ethernet switch (for wired networking)](https://www.amazon.com/dp/B000FNFSPY)
+* [Ethernet switch (for wired networking)](https://www.amazon.com/dp/B0863M7C1L)
 
 # FAQ
 Q: Can I use wireless networking?

@@ -3,11 +3,15 @@ This is a custom streaming solution designed to work with the webcast system of 
 # Webcast Quickstart
 1. Download the [prebuilt image for a Raspberry Pi 4](https://github.com/ChickenDevs/webcast/releases/download/v1.0.0/webcast-ffmpeg-pi4.img.gz).
 2. Write the image to an SD card using the [Raspberry Pi Imager](https://www.raspberrypi.org/software/).
-3. Point a web broswer to the IP address of the Pi after it boots from the SD card.
-4. Login using webcast/alma3738
-5. Go to the "Webcast Config" section of the Cockpit UI and enter the appropriate configuration information.
-6. Click submit to save the configuration.
-7. Click start.
+3. Install as shown below.
+![Wiring Diagram](/images/diagram.jpg)
+4. We strongly recommend setting a static IP as shown [here](https://www.churchofjesuschrist.org/help/support/ip-assignment-page). The device name will be `webcast-pi` and the zone will be `public`.
+![Technology Manager IP Assignment](/images/tm-webcast-pi.jpg)
+5. Point a web broswer to the IP address of the Pi after it boots from the SD card.
+6. Login using webcast/alma3738
+7. Go to the "Webcast Config" section of the Cockpit UI and enter the appropriate configuration information.
+8. Click submit to save the configuration.
+9. Click start.
 
 # Parts List
 * [Raspberry Pi 4 - 4GB](https://www.amazon.com/dp/B07TC2BK1X)

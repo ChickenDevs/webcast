@@ -10,6 +10,7 @@ This is a custom streaming solution designed to work with the webcast system of 
 5. Point a web broswer to the IP address of the Pi after it boots from the SD card.
 6. Login using webcast/alma3738
 7. Go to the "Webcast Config" section of the Cockpit UI and enter the appropriate configuration information.
+![Cockpit WebcastConfig Plugin](../../wiki/images/webcast_config.jpg)
 8. Click submit to save the configuration.
 9. Click start.
 

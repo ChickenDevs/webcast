@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
 from requests import get
-from os import system, path
+from requests.exceptions import HTTPError
+from os import system, path, sys
 import logging
 import time
 import json
@@ -31,7 +32,11 @@ with open(f"/etc/webcast/webcast.conf") as f:
 if config['auto'] == "true":
     # Get the Config file from the Church
     request = get(config['url'])
-    request.raise_for_status()
+    try:
+        request.raise_for_status()
+    except HTTPError as err:
+        logger.error("HTTP Error: {0}".format(err))
+        sys.exit("Unable to fetch configuration.")
     xml = request.text
     logger.info("Successfully retrieved XML file")
 

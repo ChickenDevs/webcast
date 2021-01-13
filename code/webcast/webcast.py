@@ -30,7 +30,9 @@ with open(f"/etc/webcast/webcast.conf") as f:
 
 if config['auto'] == "true":
     # Get the Config file from the Church
-    xml = get(config['url']).text
+    request = get(config['url'])
+    request.raise_for_status()
+    xml = request.text
     logger.info("Successfully retrieved XML file")
 
     # Video Bitrate

@@ -23,9 +23,9 @@ This is a custom streaming solution designed to work with the webcast system of 
 * [3.5mm Audio Cable](https://www.amazon.com/dp/B088KLGVHJ)
 * [USB Webcam (1080p, narrow FOV & Tripod mount recommended)](https://www.amazon.com/dp/B08931JJLV)
 * [USB Extension Cable (as long as needed)](https://www.amazon.com/dp/B0777FDCX7)
-* Tall camera mount (Tripod OR Clamp Mount for back of pew)
+* Tall camera mount (Tripod **OR** Clamp Mount for back of pew)
   * [Tall Tripod with standard camera mount](https://www.amazon.com/dp/B08D6KM95D)
-  * [Clamp Mount (for back of pew)](https://www.amazon.com/gp/product/B0772LBG2D) AND [Selfie Stick (attachs to clamp)](https://www.amazon.com/gp/product/B09688D5P9)
+  * [Clamp Mount (for back of pew)](https://www.amazon.com/gp/product/B0772LBG2D) **AND** [Selfie Stick](https://www.amazon.com/gp/product/B09688D5P9)
 * [Gaffers Tape](https://www.amazon.com/gp/product/B01FZXLN5C) (if running cables across aisles)
 
 These last two items are optional. We use the remote control outlet on the network switch to turn off/on the stream without having to reboot the Pi. You could use the power switch on the Pi directly or use the web interface to stop and start the stream from a smartphone, tablet or laptop. We chose the hanging remote control outlet with an indicator light so that it sat just above the floor where the bishopric could see the light and control it from their seats.

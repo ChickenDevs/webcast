@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo apt update -y
 sudo apt install cockpit ffmpeg python3-pip -y
 sudo python3 -m pip install requests flask psutil pam
 sudo mkdir /etc/systemd/system/cockpit.socket.d

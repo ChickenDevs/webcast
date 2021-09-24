@@ -20,4 +20,4 @@ sudo cp -r code/webcastconfig /usr/share/cockpit
 sudo systemctl daemon-reload
 sudo systemctl enable --now webcast.timer
 sudo systemctl enable --now webcast-api.service
-sudo systemctl enable --now webcast-monitor.service
+sudo systemctl enable --now webcast-monitor.timer

@@ -1,0 +1,11 @@
+[Unit]
+Description=API for the Webcast Pi Manager
+Wants=network.target
+
+[Service]
+ExecStartPre=/bin/sleep 3
+ExecStart=/etc/webcast/api/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

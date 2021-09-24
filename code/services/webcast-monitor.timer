@@ -1,0 +1,9 @@
+[Unit]
+Description=Check for changed webcast
+
+[Timer]
+OnStartupSec=1s
+OnUnitActiveSec=5m
+
+[Install]
+WantedBy=timers.target

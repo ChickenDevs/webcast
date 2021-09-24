@@ -6,6 +6,6 @@ labels: bug
 
 **Please describe the bug:** (eg. the stop button on the webcast config page shuts down the pi instead)
 
-**Expected Behavior(if applicable):** (eg. it shuts down instead)
+**Expected Behavior(if applicable):** (eg. stop the stream)
 
-**Current Behavior(if applicable):** (eg. it should stop the broadcast)
+**Current Behavior(if applicable):** (eg. shuts down the pi)

@@ -1,0 +1,10 @@
+[Unit]
+Description=Auto-Start on Broadcast Change
+
+[Service]
+ExecStart=/etc/webcast/webcast-monitor.py
+WorkingDirectory=/etc/webcast
+KillMode=process
+
+[Install]
+WantedBy=default.target

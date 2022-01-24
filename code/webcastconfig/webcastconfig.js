@@ -9,17 +9,17 @@ const vbitrate = document.getElementById("vbitrate");
 const vbitrateTag = document.getElementById("vbitrateTag");
 const abitrate = document.getElementById("abitrate");
 const abitrateTag = document.getElementById("abitrateTag");
-const resolution = document.getElementById("resolution")
-const videoDelay = document.getElementById("videoDelay")
-const audioDelay = document.getElementById("audioDelay")
-const volume = document.getElementById("volume")
-const preset = document.getElementById("preset")
-const submit = document.getElementById("submit")
-const status_btn = document.getElementById("status")
-const stop = document.getElementById("stop")
-const start = document.getElementById("start")
-const restart = document.getElementById("restart")
-const output = document.getElementById("output")
+const resolution = document.getElementById("resolution");
+const videoDelay = document.getElementById("videoDelay");
+const audioDelay = document.getElementById("audioDelay");
+const volume = document.getElementById("volume");
+const preset = document.getElementById("preset");
+const submit = document.getElementById("submit");
+const status_btn = document.getElementById("status");
+const stop = document.getElementById("stop");
+const start = document.getElementById("start");
+const restart = document.getElementById("restart");
+const output = document.getElementById("output");
 
 const file = cockpit.file("/etc/webcast/webcast.conf", {syntax: JSON})
 
@@ -27,9 +27,7 @@ file.read()
 .then((content, tag) => {
 	try {
 		if ('auto' in content) {
-			if (content.auto == "true") {
-				auto.checked = true
-			} else {auto.checked = false}
+			auto.checked = content.auto === "true";
 		} else {auto.checked = true}
 		set_auto()
 		if ('url' in content) {
@@ -114,26 +112,26 @@ function service_ctl(action) {
 			cockpit.spawn(["sudo", "pkill", "ffmpeg"])
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "stop", "webcast.timer"])
-			.then(success())
+			.then(success)
 			break;
 		case "start":
 			cockpit.spawn(["sudo", "systemctl", "start", "webcast"])
 			.stream(service_output)
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "start", "webcast.timer"])
-			.then(success())
+			.then(success)
 			break;
 		case "restart":
 			cockpit.spawn(["sudo", "pkill", "ffmpeg"])
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "restart", "webcast"])
 			.stream(service_output)
-			.then(success())
+			.then(success)
 			break;
 		default:
 			cockpit.spawn(["sudo", "systemctl", "status", "webcast"])
 			.stream(service_output)
-			.then(success())
+			.then(success)
 	}
 
 	//.catch(err => {console.log(err)})
@@ -148,9 +146,9 @@ function set_presets() {
 	let faster = new Option("faster", "faster");
 	let fast = new Option("fast", "fast");
 	let medium = new Option("medium", "medium");
-	if(resolution.value == "640x480"){
+	if(resolution.value === "640x480"){
 		while (preset.options.length > 2) {
-			preset.remove(2)
+			preset.remove(2);
 		}
 		preset.add(veryfast,undefined);
 		preset.add(faster,undefined);
@@ -158,16 +156,16 @@ function set_presets() {
 		preset.add(medium,undefined);
 		preset.value = "fast";
 	}
-	if(resolution.value == "800x600") {
+	if(resolution.value === "800x600") {
 		while (preset.options.length > 2) {
-			preset.remove(2)
+			preset.remove(2);
 		}
 		preset.add(veryfast,undefined);
 		preset.add(faster,undefined);
 		preset.add(fast,undefined);
 		preset.value = "faster";
 	}
-	if(resolution.value == "1280x720") {
+	if(resolution.value === "1280x720") {
 		while (preset.options.length > 2) {
 			preset.remove(2);
 		}
@@ -175,7 +173,7 @@ function set_presets() {
 		preset.add(faster,undefined);
 		preset.value = "veryfast";
 	} 
-	if(resolution.value == "1920x1080") {
+	if(resolution.value === "1920x1080") {
 		while (preset.options.length > 2) {
 			preset.remove(2);
 		}
@@ -184,7 +182,7 @@ function set_presets() {
 }
 
 function set_auto() {
-	if(auto.checked == true){
+	if(auto.checked === true){
 		url.style.visibility = "visible"
 		urlTag.style.visibility = "visible"
 		rtmpurl.style.visibility = "hidden"

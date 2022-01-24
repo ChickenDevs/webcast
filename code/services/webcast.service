@@ -1,5 +1,5 @@
 [Unit]
-Description=Stream Manager
+Description=Webcast Manager
 After=sound.target
 
 [Service]

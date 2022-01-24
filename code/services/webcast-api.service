@@ -1,5 +1,5 @@
 [Unit]
-Description=API for the Webcast Pi Manager
+Description=API for the Webcast Manager
 Wants=network.target
 
 [Service]

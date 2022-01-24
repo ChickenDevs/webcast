@@ -21,9 +21,7 @@ def pi_stopped(f):
     @wraps(f)
     def pred(*args, **kwargs):
         if request.method == "POST":
-            # if len(os.popen('ps -e | grep ffmpeg').read()) > 0:
-            import random
-            if random.randint(0,2) == 1:
+            if len(os.popen('ps -e | grep ffmpeg').read()) > 0:
                 return abort(404)
         return f(*args, **kwargs)
     return pred

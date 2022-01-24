@@ -1,5 +1,5 @@
 [Unit]
-Description=Auto-Start on Broadcast Change
+Description=Auto-Start on Webcast Change
 
 [Service]
 ExecStart=/etc/webcast/webcast-monitor.py

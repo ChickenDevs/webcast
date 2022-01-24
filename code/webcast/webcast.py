@@ -21,10 +21,10 @@ try:
     path.isfile('/etc/webcast/webcast.conf')
 except Exception as err:
     logger.warning("Couldn't find config file, creating file with defaults")
-    configFile = {"auto": "true", "url": "https://raw.githubusercontent.com/ChickenDevs/webcast/main/test-off.xml", "resolution": "1280x720",
-                  "videoDelay": 0,"audioDelay": 1, "volume": 0, "preset": "veryfast"}
+    configFile = {"auto": "true", "url": "https://raw.githubusercontent.com/ChickenDevs/webcast/main/test-off.xml",
+                  "resolution": "1280x720", "videoDelay": 0, "audioDelay": 1, "volume": 0, "preset": "veryfast"}
     out = json.dumps(configFile)
-    f = open(f"/etc/webcast/webcast.conf", "w").write(out)
+    f = open(f"/etc/webcast/webcast.conf", "w").write(out).close()
 
 with open(f"/etc/webcast/webcast.conf") as f:
     config = json.load(f)

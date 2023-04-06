@@ -9,58 +9,69 @@ const vbitrate = document.getElementById("vbitrate");
 const vbitrateTag = document.getElementById("vbitrateTag");
 const abitrate = document.getElementById("abitrate");
 const abitrateTag = document.getElementById("abitrateTag");
-const resolution = document.getElementById("resolution");
-const videoDelay = document.getElementById("videoDelay");
-const audioDelay = document.getElementById("audioDelay");
-const volume = document.getElementById("volume");
-const preset = document.getElementById("preset");
-const submit = document.getElementById("submit");
-const status_btn = document.getElementById("status");
-const stop = document.getElementById("stop");
-const start = document.getElementById("start");
-const restart = document.getElementById("restart");
-const output = document.getElementById("output");
+const resolution = document.getElementById("resolution")
+const videoDelay = document.getElementById("videoDelay")
+const audioDelay = document.getElementById("audioDelay")
+const volume = document.getElementById("volume")
+const preset = document.getElementById("preset")
+const submit = document.getElementById("submit")
+const status_btn = document.getElementById("status")
+const stop = document.getElementById("stop")
+const start = document.getElementById("start")
+const restart = document.getElementById("restart")
+const pause = document.getElementById("pause")
+const resume = document.getElementById("resume")
+const output = document.getElementById("output")
 
 const file = cockpit.file("/etc/webcast/webcast.conf", {syntax: JSON})
+var pause_stream;
 
 file.read()
 .then((content, tag) => {
 	try {
-		if ('auto' in content) {
-			auto.checked = content.auto === "true";
-		} else {auto.checked = true}
-		set_auto()
-		if ('url' in content) {
-			url.value = content.url
-		} else {url.value = "https://raw.githubusercontent.com/ChickenDevs/webcast/main/test-off.xml"}
-		if ('rtmpurl' in content) {
+               	if ('auto' in content) {
+                       	if (content.auto == "true") {
+                               	auto.checked = true
+                       	} else {auto.checked = false}
+               	} else {auto.checked = true}
+               	set_auto()
+                if ('url' in content) {
+       	                url.value = content.url
+               	} else {url.value = "https://raw.githubusercontent.com/ChickenDevs/webcast/main/test-off.xml"}
+                if ('rtmpurl' in content) {
 			rtmpurl.value = content.rtmpurl
-		}
-		if ('rtmpkey' in content) {
-			rtmpkey.value = content.rtmpkey
-		}
-		if ('vbitrate' in content) {
-			vbitrate.value = content.vbitrate
-		} else {vbitrate.value = 1250000}
-		if ('abitrate' in content) {
-			abitrate.value = content.abitrate
-		} else {abitrate.value = 48000}
-		if ('resolution' in content) {
-			resolution.value = content.resolution
-		} else {resolution.value = "1280x720"}
-		if ('videoDelay' in content) {
-			videoDelay.value = content.videoDelay
-		} else {videoDelay.value = 0}
-		if ('audioDelay' in content) {
-			audioDelay.value = content.audioDelay
-		} else {audioDelay.value = 1}
-		if ('volume' in content) {
-			volume.value = content.volume
-		} else {volume.value = 0}
-		if ('preset' in content) {
-			preset.value = content.preset
-		} else {preset.value = "veryfast"}
-	} catch(err) {}
+               	}
+               	if ('rtmpkey' in content) {
+                       	rtmpkey.value = content.rtmpkey
+               	}
+               	if ('vbitrate' in content) {
+                       	vbitrate.value = content.vbitrate
+               	} else {vbitrate.value = 1250000}
+               	if ('abitrate' in content) {
+                       	abitrate.value = content.abitrate
+               	} else {abitrate.value = 48000}
+               	if ('resolution' in content) {
+                       	resolution.value = content.resolution
+               	} else {resolution.value = "1280x720"}
+               	if ('videoDelay' in content) {
+                       	videoDelay.value = content.videoDelay
+               	} else {videoDelay.value = 0}
+               	if ('audioDelay' in content) {
+                       	audioDelay.value = content.audioDelay
+               	} else {audioDelay.value = 1}
+               	if ('volume' in content) {
+                       	volume.value = content.volume
+               	} else {volume.value = 0}
+               	if ('preset' in content) {
+                       	preset.value = content.preset
+               	} else {preset.value = "veryfast"}
+               	if ('shouldbepaused' in content) {
+                       	if (content.shouldbepaused) {
+                               	pause_stream = true;
+                       	} else {pause_stream = false;}
+               	} else {pause_stream = false;}
+               	set_auto()
+       	} catch(err) {}
 })
 .catch(() => {})
 
@@ -77,7 +88,9 @@ function write() {
 			videoDelay: parseFloat(videoDelay.value),
 			audioDelay: parseFloat(audioDelay.value),
 			volume: parseInt(volume.value),
-			preset: preset.value
+			preset: preset.value,
+			shouldbepaused: pause_stream,
+			wards: ["wardname"]
 		}
 		console.log(data)
 		file.replace(data)
@@ -104,7 +117,7 @@ function failure() {
 	}).showToast();
 }
 
-function service_ctl(action) {
+async function service_ctl(action) {
 	output.innerHTML = "";
 
         switch(action){
@@ -112,26 +125,48 @@ function service_ctl(action) {
 			cockpit.spawn(["sudo", "pkill", "ffmpeg"])
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "stop", "webcast.timer"])
-			.then(success)
+			.then(success())
 			break;
 		case "start":
 			cockpit.spawn(["sudo", "systemctl", "start", "webcast"])
 			.stream(service_output)
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "start", "webcast.timer"])
-			.then(success)
+			.then(success())
 			break;
 		case "restart":
 			cockpit.spawn(["sudo", "pkill", "ffmpeg"])
 			.then()
 			cockpit.spawn(["sudo", "systemctl", "restart", "webcast"])
 			.stream(service_output)
-			.then(success)
+			.then(success())
 			break;
+		case "pause":
+			cockpit.spawn(["sudo", "pkill", "ffmpeg"])
+			.then()
+			pause_stream = true;
+			write();
+			output.append("Pausing broadcast...");
+			cockpit.spawn(["sudo", "systemctl", "restart", "webcast"])
+                        .stream(service_output)
+			await new Promise(function(resolve) { setTimeout(resolve, 3000); });
+			location.reload();
+                        break;
+		case "resume":
+                        cockpit.spawn(["sudo", "pkill", "ffmpeg"])
+                        .then()
+                        pause_stream = false;
+                        write();
+			output.append("Resuming broadcast...");
+                        cockpit.spawn(["sudo", "systemctl", "restart", "webcast"])
+                        .stream(service_output)
+			await new Promise(function(resolve) { setTimeout(resolve, 3000); });
+			location.reload();
+                        break;
 		default:
 			cockpit.spawn(["sudo", "systemctl", "status", "webcast"])
 			.stream(service_output)
-			.then(success)
+			.then(success())
 	}
 
 	//.catch(err => {console.log(err)})
@@ -144,36 +179,12 @@ function service_output(data) {
 function set_presets() {
 	let veryfast = new Option("veryfast","veryfast");
 	let faster = new Option("faster", "faster");
-	let fast = new Option("fast", "fast");
-	let medium = new Option("medium", "medium");
-	if(resolution.value === "640x480"){
-		while (preset.options.length > 2) {
-			preset.remove(2);
-		}
-		preset.add(veryfast,undefined);
-		preset.add(faster,undefined);
-		preset.add(fast,undefined);
-		preset.add(medium,undefined);
-		preset.value = "fast";
-	}
-	if(resolution.value === "800x600") {
-		while (preset.options.length > 2) {
-			preset.remove(2);
-		}
-		preset.add(veryfast,undefined);
-		preset.add(faster,undefined);
-		preset.add(fast,undefined);
-		preset.value = "faster";
-	}
-	if(resolution.value === "1280x720") {
-		while (preset.options.length > 2) {
-			preset.remove(2);
-		}
+	if(resolution.value == "1280x720" && preset.options.length == 2){
 		preset.add(veryfast,undefined);
 		preset.add(faster,undefined);
 		preset.value = "veryfast";
 	} 
-	if(resolution.value === "1920x1080") {
+	if(resolution.value == "1920x1080") {
 		while (preset.options.length > 2) {
 			preset.remove(2);
 		}
@@ -182,7 +193,7 @@ function set_presets() {
 }
 
 function set_auto() {
-	if(auto.checked === true){
+	if(auto.checked == true){
 		url.style.visibility = "visible"
 		urlTag.style.visibility = "visible"
 		rtmpurl.style.visibility = "hidden"
@@ -205,6 +216,13 @@ function set_auto() {
 		abitrate.style.visibility = "visible"
 		abitrateTag.style.visibility = "visible"
 	}
+	if (pause_stream) {
+		pause.style.visibility = "hidden"
+		resume.style.visibility = "visible"
+	} else {
+		pause.style.visibility = "visible"
+		resume.style.visibility = "hidden"	
+	}
 }
 
 set_presets();
@@ -216,4 +234,5 @@ status_btn.addEventListener("click", () => {service_ctl("status")});
 stop.addEventListener("click", () => {service_ctl("stop")});
 start.addEventListener("click", () => {service_ctl("start")});
 restart.addEventListener("click", () => {service_ctl("restart")});
-
+pause.addEventListener("click", () => {service_ctl("pause")});
+resume.addEventListener("click", () => {service_ctl("resume")});

@@ -36,7 +36,7 @@
 .switch {
     position: relative;
     display: inline-block;
-    width: 30px;
+    width: 50px;
     height: 16px;
 }
 
@@ -55,7 +55,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: #ccc;
+    background-color: #000;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -67,7 +67,7 @@
     width: 12px;
     left: 2px;
     bottom: 2px;
-    background-color: white;
+    background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
 }

@@ -1,31 +1,15 @@
 #!/usr/bin/python3
+import datetime
+import os
 
-import json
-from os import path, system
-import requests
+output = os.popen('sudo systemctl status webcast.timer').read()
+output = output.split('\n')
+output = [x for x in output if 'Active:' in x][0]
+output = output.split()
+dead_since = datetime.datetime.strptime(f'{output[5]} {output[6]}', '%Y-%m-%d %H:%M:%S')
 
-try:
-    with open('/etc/webcast/webcast.key') as f:
-        old_key = f.read()
-except FileNotFoundError:
-    old_key = ''
+print(f"Webcast has been {output[1]} since {dead_since}")
 
-if not path.isfile('/etc/webcast/webcast.conf'):
-    exit(1)
-
-with open('/etc/webcast/webcast.conf') as f:
-    config = json.load(f)
-
-if config.get('auto', 'false') != 'true':
-    exit(1)
-
-url = config.get('url')
-xml = requests.get(url).text
-
-_, key = xml.split('<stream>')
-key, _ = key.split('</stream>')
-
-if key != old_key:
-    system(f'echo {key} > /etc/webcast/webcast.key')
-    system('sudo systemctl start webcast.timer')
-
+if datetime.datetime.utcnow() > dead_since + datetime.timedelta(hours=1) and output[1] == 'inactive':
+    print("Restarting timer.")
+    os.system("sudo systemctl start webcast.timer")

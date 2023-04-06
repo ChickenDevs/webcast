@@ -29,6 +29,7 @@ def pi_stopped(f):
 @app.route('/auth')
 @auth
 def authenticate():
+    print("/auth called")
     return {}
 
 import psutil
@@ -36,22 +37,59 @@ import time
 @app.route('/pi/stats')
 @auth
 def pi_stats():
+    print("/pi/stats called")
     net = psutil.net_io_counters()
     return {'timestamp': time.time(), 'cpu': psutil.cpu_percent(), 'memory': psutil.virtual_memory().percent, 'net_sent': net.bytes_sent, 'net_recv': net.bytes_recv}
+
+
+@app.route('/webcast/pause/status')
+@auth
+def webcast_pause_status():
+    with open('/etc/webcast/webcast.conf') as f:
+        conf = json.load(f)
+    return {'paused': conf.get('shouldbepaused', False)}
+
+
+@app.route('/webcast/pause')
+@auth
+def webcast_pause():
+    with open('/etc/webcast/webcast.conf') as f:
+        conf = json.load(f)
+    conf['shouldbepaused'] = True
+    with open('/etc/webcast/webcast.conf', 'w') as f:
+        json.dump(conf, f)
+    os.system('sudo systemctl start webcast.service')
+    return {'paused': True}
+
+
+@app.route('/webcast/resume')
+@auth
+def webcast_resume():
+    with open('/etc/webcast/webcast.conf') as f:
+        conf = json.load(f)
+    conf['shouldbepaused'] = False
+    with open('/etc/webcast/webcast.conf', 'w') as f:
+        json.dump(conf, f)
+    os.system('sudo systemctl start webcast.service')
+    return {'paused': False}
 
 
 @app.route('/webcast/stop')
 @auth
 def webcast_stop():
-    os.system('sudo pkill ffmpeg')
+    print("/webcast/stop called")
     os.system('sudo systemctl stop webcast.timer')
+    os.system('sudo systemctl stop webcast.service')
+    os.system('sudo pkill ffmpeg')
     output = os.popen('sudo systemctl status webcast.service').read()
     return {'response': output}
 
 @app.route('/webcast/start')
 @auth
 def webcast_start():
+    print("/webcast/start called")
     os.system('sudo systemctl start webcast.timer')
+    os.system('sudo systemctl start webcast.service')
     output = os.popen('sudo systemctl status webcast.service').read()
     return {'response': output}
 
@@ -59,6 +97,7 @@ def webcast_start():
 @app.route('/webcast/restart')
 @auth
 def webcast_restart():
+    print("/webcast/restart called")
     os.system('sudo pkill ffmpeg')
     os.system('sudo systemctl restart webcast.service')
     output = os.popen('sudo systemctl status webcast.service').read()
@@ -67,6 +106,7 @@ def webcast_restart():
 @app.route('/webcast/status')
 @auth
 def webcast_status():
+    print("/webcast/status called")
     output = os.popen('sudo systemctl status webcast.service').read()
     return {'response': output}
 
@@ -75,6 +115,8 @@ def webcast_status():
 @auth
 @pi_stopped
 def webcast_settings():
+    print("/webcast/settings called")
+    print("Method:", request.method)
     with open('/etc/webcast/webcast.conf') as f:
         conf = json.load(f)
 
